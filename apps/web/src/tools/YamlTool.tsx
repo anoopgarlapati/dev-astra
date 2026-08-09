@@ -40,7 +40,7 @@ export function YamlTool() {
   }
 
   return (
-    <ToolShell title="YAML">
+    <ToolShell title="YAML" docs={yamlTool.docs}>
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="yaml-mode">Mode</label>

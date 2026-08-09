@@ -40,7 +40,7 @@ export function JsonTool() {
   }
 
   return (
-    <ToolShell title="JSON">
+    <ToolShell title="JSON" docs={jsonTool.docs}>
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="json-mode">Mode</label>

@@ -40,7 +40,7 @@ export function Base64Tool() {
   }
 
   return (
-    <ToolShell title="Base64">
+    <ToolShell title="Base64" docs={base64Tool.docs}>
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="base64-mode">Mode</label>

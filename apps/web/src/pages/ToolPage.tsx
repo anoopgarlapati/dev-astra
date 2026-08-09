@@ -23,13 +23,17 @@ import { JwtTool } from "../tools/JwtTool";
 import { UuidTool } from "../tools/UuidTool";
 import { YamlTool } from "../tools/YamlTool";
 
+const emptyDocs = {
+  summary: "No documentation is available for this page.",
+};
+
 export function ToolPage() {
   const { id } = useParams();
   const tool = id ? getTool(id) : undefined;
 
   if (!tool) {
     return (
-      <ToolShell title="Not found">
+      <ToolShell title="Not found" docs={emptyDocs}>
         <p className="empty">No tool with id “{id ?? ""}”.</p>
       </ToolShell>
     );
@@ -47,6 +51,10 @@ export function ToolPage() {
     case "uuid":
       return <UuidTool />;
     default:
-      return <ToolShell title={tool.name}>Unsupported.</ToolShell>;
+      return (
+        <ToolShell title={tool.name} docs={tool.docs}>
+          Unsupported.
+        </ToolShell>
+      );
   }
 }

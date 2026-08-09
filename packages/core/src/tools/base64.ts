@@ -46,6 +46,22 @@ export const base64Tool: Tool<Base64Input, Base64Output> = {
   name: "Base64",
   description: "Encode or decode Base64 text.",
   category: "encoding",
+  docs: {
+    summary:
+      "Encode UTF-8 text to Base64, or decode Base64 back to text. Runs entirely in your browser.",
+    examples: [
+      {
+        title: "Encode",
+        input: "hello",
+        output: "aGVsbG8=",
+      },
+      {
+        title: "Decode",
+        input: "aGVsbG8=",
+        output: "hello",
+      },
+    ],
+  },
   run(input) {
     try {
       if (input.mode === "encode") {

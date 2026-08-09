@@ -29,6 +29,22 @@ export const yamlTool: Tool<YamlInput, YamlOutput> = {
   name: "YAML",
   description: "Convert between YAML and JSON.",
   category: "data",
+  docs: {
+    summary:
+      "Convert YAML to JSON or JSON to YAML. Useful for config snippets and API payloads.",
+    examples: [
+      {
+        title: "YAML → JSON",
+        input: "name: Dev Astra\nok: true",
+        output: '{\n  "name": "Dev Astra",\n  "ok": true\n}',
+      },
+      {
+        title: "JSON → YAML",
+        input: '{"name":"Dev Astra","ok":true}',
+        output: "name: Dev Astra\nok: true\n",
+      },
+    ],
+  },
   run(input) {
     try {
       if (input.mode === "yaml-to-json") {

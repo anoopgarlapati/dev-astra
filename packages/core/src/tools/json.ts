@@ -25,6 +25,22 @@ export const jsonTool: Tool<JsonInput, JsonOutput> = {
   name: "JSON",
   description: "Format or minify JSON.",
   category: "data",
+  docs: {
+    summary:
+      "Pretty-print JSON with indentation, or minify it to a single line. Invalid JSON returns an error.",
+    examples: [
+      {
+        title: "Format",
+        input: '{"name":"Dev Astra","ok":true}',
+        output: '{\n  "name": "Dev Astra",\n  "ok": true\n}',
+      },
+      {
+        title: "Minify",
+        input: '{\n  "name": "Dev Astra",\n  "ok": true\n}',
+        output: '{"name":"Dev Astra","ok":true}',
+      },
+    ],
+  },
   run(input) {
     try {
       const value = JSON.parse(input.text);

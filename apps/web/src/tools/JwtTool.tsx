@@ -42,7 +42,7 @@ export function JwtTool() {
   }
 
   return (
-    <ToolShell title="JWT">
+    <ToolShell title="JWT" docs={jwtTool.docs}>
       <div className="tool-layout">
         <div className="field">
           <div className="field-label-row">
