@@ -2,7 +2,7 @@
 
 Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is a static React app under `apps/web`.
 
-**Version:** 0.2.0
+**Version:** 0.2.1
 
 ## Tools
 
@@ -10,7 +10,9 @@ Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is 
 - **JWT** — decode header and payload (no verification)
 - **JSON** — format or minify JSON
 - **YAML** — convert between YAML and JSON
-- **UUID** — generate a UUID v4 or validate a UUID string
+- **UUID** — generate or validate a UUID v4 only
+
+Each tool page has a collapsed **Docs** panel with a short summary and examples.
 
 Open a tool at `/tools/:id` (for example `/tools/base64`).
 

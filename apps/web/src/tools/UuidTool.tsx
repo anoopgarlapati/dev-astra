@@ -35,8 +35,8 @@ export function UuidTool() {
       } else {
         setOutput(
           result.data.valid
-            ? `${result.data.value} is valid`
-            : `${result.data.value} is invalid`,
+            ? `${result.data.value} is a valid UUID v4`
+            : `${result.data.value} is not a valid UUID v4`,
         );
       }
       setError(undefined);
@@ -47,7 +47,7 @@ export function UuidTool() {
   }
 
   return (
-    <ToolShell title="UUID">
+    <ToolShell title="UUID v4" docs={uuidTool.docs}>
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="uuid-mode">Mode</label>
@@ -56,14 +56,14 @@ export function UuidTool() {
             value={mode}
             onChange={(e) => setMode(e.target.value as UuidInput["mode"])}
           >
-            <option value="generate">Generate</option>
-            <option value="validate">Validate</option>
+            <option value="generate">Generate UUID v4</option>
+            <option value="validate">Validate UUID v4</option>
           </select>
         </div>
         {mode === "validate" ? (
           <div className="field">
             <div className="field-label-row">
-              <label htmlFor="uuid-value">UUID</label>
+              <label htmlFor="uuid-value">UUID v4</label>
               <CopyButton value={value} />
             </div>
             <input

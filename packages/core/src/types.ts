@@ -25,10 +25,22 @@ export type ToolResult<T> =
   | { ok: true; data: T }
   | { ok: false; error: ToolError };
 
+export type ToolDocExample = {
+  title: string;
+  input: string;
+  output?: string;
+};
+
+export type ToolDocs = {
+  summary: string;
+  examples?: ToolDocExample[];
+};
+
 export interface Tool<TInput = unknown, TOutput = unknown> {
   id: string;
   name: string;
   description: string;
   category: ToolCategory;
+  docs: ToolDocs;
   run(input: TInput): ToolResult<TOutput>;
 }

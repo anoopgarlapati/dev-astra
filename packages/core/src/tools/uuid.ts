@@ -32,8 +32,24 @@ const UUID_V4_RE =
 export const uuidTool: Tool<UuidInput, UuidOutput> = {
   id: "uuid",
   name: "UUID",
-  description: "Generate a UUID v4 or validate a UUID string.",
+  description: "Generate or validate a UUID v4 (version 4 only).",
   category: "text",
+  docs: {
+    summary:
+      "Generate a random UUID v4 via crypto.randomUUID(), or validate that a string is a UUID v4. Other UUID versions are not generated or accepted as valid.",
+    examples: [
+      {
+        title: "Validate UUID v4",
+        input: "550e8400-e29b-41d4-a716-446655440000",
+        output: "valid UUID v4",
+      },
+      {
+        title: "Reject non-v4",
+        input: "00000000-0000-1000-8000-000000000000",
+        output: "not a valid UUID v4 (version nibble is not 4)",
+      },
+    ],
+  },
   run(input) {
     if (input.mode === "generate") {
       return ok({ value: crypto.randomUUID() });

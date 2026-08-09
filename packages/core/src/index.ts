@@ -14,7 +14,14 @@
  * limitations under the License.
  */
 
-export type { Tool, ToolCategory, ToolError, ToolResult } from "./types";
+export type {
+  Tool,
+  ToolCategory,
+  ToolDocExample,
+  ToolDocs,
+  ToolError,
+  ToolResult,
+} from "./types";
 export { ok, err } from "./result";
 export { getTool, listTools } from "./registry";
 export { base64Tool, type Base64Input } from "./tools/base64";

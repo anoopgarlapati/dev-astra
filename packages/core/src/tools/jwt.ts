@@ -38,6 +38,19 @@ export const jwtTool: Tool<JwtInput, JwtOutput> = {
   name: "JWT",
   description: "Decode a JWT header and payload (no verification).",
   category: "data",
+  docs: {
+    summary:
+      "Split a JWT into header, payload, and signature. Decoding only — signatures are not verified. Do not paste secrets into untrusted environments.",
+    examples: [
+      {
+        title: "Decode (header + payload shown)",
+        input:
+          "eyJhbGciOiJub25lIn0.eyJzdWIiOiIxMjM0IiwibmFtZSI6IkRldiBBc3RyYSJ9.",
+        output:
+          'header: { "alg": "none" }\npayload: { "sub": "1234", "name": "Dev Astra" }',
+      },
+    ],
+  },
   run(input) {
     const parts = input.token.trim().split(".");
     if (parts.length !== 3) {

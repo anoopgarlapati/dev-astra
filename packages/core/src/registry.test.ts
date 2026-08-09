@@ -39,4 +39,16 @@ describe("registry", () => {
     expect(getTool("base64")?.name).toBe("Base64");
     expect(getTool("missing")).toBeUndefined();
   });
+
+  test("every tool has docs with a non-empty summary", () => {
+    for (const tool of listTools()) {
+      expect(tool.docs.summary.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  test("uuid docs state v4-only behavior", () => {
+    const uuid = getTool("uuid");
+    expect(uuid?.description.toLowerCase()).toContain("v4");
+    expect(uuid?.docs.summary.toLowerCase()).toContain("v4");
+  });
 });
