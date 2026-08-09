@@ -16,6 +16,7 @@
 
 import { uuidTool, type UuidInput } from "@dev-astra/core";
 import { useState } from "react";
+import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
 export function UuidTool() {
@@ -33,7 +34,9 @@ export function UuidTool() {
         setOutput(result.data.value);
       } else {
         setOutput(
-          result.data.valid ? `${result.data.value} is valid` : `${result.data.value} is invalid`,
+          result.data.valid
+            ? `${result.data.value} is valid`
+            : `${result.data.value} is invalid`,
         );
       }
       setError(undefined);
@@ -59,7 +62,10 @@ export function UuidTool() {
         </div>
         {mode === "validate" ? (
           <div className="field">
-            <label htmlFor="uuid-value">UUID</label>
+            <div className="field-label-row">
+              <label htmlFor="uuid-value">UUID</label>
+              <CopyButton value={value} />
+            </div>
             <input
               id="uuid-value"
               type="text"
@@ -74,7 +80,10 @@ export function UuidTool() {
         {error ? <p className="error">{error}</p> : null}
         {output ? (
           <div className="field">
-            <label htmlFor="uuid-output">Result</label>
+            <div className="field-label-row">
+              <label htmlFor="uuid-output">Result</label>
+              <CopyButton value={output} />
+            </div>
             <pre id="uuid-output" className="output">
               {output}
             </pre>

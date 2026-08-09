@@ -16,6 +16,7 @@
 
 import { jwtTool } from "@dev-astra/core";
 import { useState } from "react";
+import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
 export function JwtTool() {
@@ -44,7 +45,10 @@ export function JwtTool() {
     <ToolShell title="JWT">
       <div className="tool-layout">
         <div className="field">
-          <label htmlFor="jwt-token">Token</label>
+          <div className="field-label-row">
+            <label htmlFor="jwt-token">Token</label>
+            <CopyButton value={token} />
+          </div>
           <textarea
             id="jwt-token"
             rows={5}
@@ -59,15 +63,24 @@ export function JwtTool() {
         {(header || payload || signature) && (
           <div className="panels">
             <div className="panel">
-              <h2>Header</h2>
+              <div className="panel-label-row">
+                <h2>Header</h2>
+                <CopyButton value={header} />
+              </div>
               <pre>{header}</pre>
             </div>
             <div className="panel">
-              <h2>Payload</h2>
+              <div className="panel-label-row">
+                <h2>Payload</h2>
+                <CopyButton value={payload} />
+              </div>
               <pre>{payload}</pre>
             </div>
             <div className="panel">
-              <h2>Signature</h2>
+              <div className="panel-label-row">
+                <h2>Signature</h2>
+                <CopyButton value={signature} />
+              </div>
               <pre>{signature}</pre>
             </div>
           </div>

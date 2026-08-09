@@ -15,14 +15,17 @@
  */
 
 import { Route, Routes } from "react-router-dom";
+import { AppShell } from "./components/AppShell";
 import { HomePage } from "./pages/HomePage";
 import { ToolPage } from "./pages/ToolPage";
 
 export function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/tools/:id" element={<ToolPage />} />
+      <Route element={<AppShell />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/tools/:id" element={<ToolPage />} />
+      </Route>
     </Routes>
   );
 }

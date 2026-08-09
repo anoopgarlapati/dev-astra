@@ -16,13 +16,16 @@
 
 :root {
   color-scheme: light;
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
   line-height: 1.5;
-  --bg: #f3f6f4;
-  --ink: #14201a;
-  --muted: #4d5c55;
-  --accent: #0f6b4c;
+  --bg: #f7f7f4;
+  --ink: #1a1a1a;
+  --muted: #5c5c5c;
+  --accent: #f54e00;
+  --accent-soft: #fff0e8;
   --panel: #ffffff;
+  --border: #e6e5e0;
+  --sidebar-width: 15.5rem;
 }
 
 * {
@@ -32,9 +35,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, #d9ebe3 0%, transparent 45%),
-    linear-gradient(180deg, #eef3f0 0%, var(--bg) 100%);
+  background: var(--bg);
   color: var(--ink);
 }
 
@@ -42,80 +43,150 @@ body {
   min-height: 100vh;
 }
 
-.app {
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 3rem 1.25rem 4rem;
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.brand {
-  margin: 0;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: -0.04em;
+.mobile-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.menu-button {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mobile-brand {
+  color: inherit;
+  text-decoration: none;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.tagline {
-  margin: 0.75rem 0 2rem;
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  border: none;
+  padding: 0;
+  background: rgb(0 0 0 / 0.35);
+  z-index: 30;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: min(var(--sidebar-width), 85vw);
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 1.25rem 1rem 2rem;
+  z-index: 40;
+  transform: translateX(-105%);
+  transition: transform 0.18s ease;
+  overflow-y: auto;
+}
+
+.shell--nav-open .sidebar {
+  transform: translateX(0);
+}
+
+.sidebar-brand {
+  display: block;
+  margin: 0 0.4rem 1.5rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.sidebar-label {
+  margin: 0 0.4rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--muted);
-  max-width: 36rem;
 }
 
-.tool-list {
+.sidebar-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.15rem;
 }
 
-.tool-list li,
-.empty {
-  background: var(--panel);
-  border: 1px solid #d5e0da;
-  padding: 1rem 1.1rem;
-}
-
-.empty {
-  color: var(--muted);
-}
-
-.tool-link {
+.nav-link {
   display: block;
-  color: inherit;
+  padding: 0.45rem 0.55rem;
+  border-radius: 0.35rem;
+  color: var(--ink);
   text-decoration: none;
+  font-size: 0.95rem;
 }
 
-.tool-link:hover .tool-name {
+.nav-link:hover {
+  background: var(--bg);
+}
+
+.nav-link--active {
+  background: var(--accent-soft);
   color: var(--accent);
-}
-
-.tool-name {
   font-weight: 600;
 }
 
-.tool-desc {
-  margin: 0.25rem 0 0;
+.shell-main {
+  min-width: 0;
+}
+
+.content {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.brand {
+  margin: 0;
+  font-family: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.tagline {
+  margin: 0.85rem 0 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  max-width: 36rem;
+  font-size: 1.05rem;
 }
 
-.back-link {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.95rem;
-}
-
-.back-link:hover {
-  text-decoration: underline;
+.lede {
+  margin: 1.25rem 0 0;
+  max-width: 36rem;
 }
 
 .tool-title {
   margin: 0 0 1.5rem;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: -0.03em;
+  font-family: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 
 .tool-layout {
@@ -128,7 +199,16 @@ body {
   gap: 0.35rem;
 }
 
-.field label {
+.field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.field label,
+.field-label-row label,
+.panel-label-row h2 {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
@@ -144,7 +224,7 @@ body {
   font-family: "IBM Plex Mono", "Menlo", monospace;
   font-size: 0.9rem;
   padding: 0.75rem 0.85rem;
-  border: 1px solid #d5e0da;
+  border: 1px solid var(--border);
   background: var(--panel);
   color: var(--ink);
   resize: vertical;
@@ -155,7 +235,7 @@ body {
   max-width: 16rem;
 }
 
-.tool-layout button {
+.tool-layout > button:not(.copy-button) {
   justify-self: start;
   padding: 0.55rem 1.1rem;
   border: none;
@@ -166,8 +246,29 @@ body {
   cursor: pointer;
 }
 
-.tool-layout button:hover {
+.tool-layout > button:not(.copy-button):hover {
   filter: brightness(1.05);
+}
+
+.copy-button {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.copy-button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .error {
@@ -180,6 +281,10 @@ body {
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.empty {
+  color: var(--muted);
 }
 
 .panels {
@@ -195,17 +300,23 @@ body {
 
 .panel {
   background: var(--panel);
-  border: 1px solid #d5e0da;
+  border: 1px solid var(--border);
   padding: 0.75rem 0.85rem;
 }
 
-.panel h2 {
-  margin: 0 0 0.5rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--muted);
+.panel-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.panel-label-row h2 {
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  font-size: 0.85rem;
 }
 
 .panel pre {
@@ -214,4 +325,27 @@ body {
   border: none;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+@media (min-width: 56rem) {
+  .shell {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+
+  .mobile-bar,
+  .nav-backdrop {
+    display: none;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    transform: none;
+    width: auto;
+  }
+
+  .content {
+    padding: 2.5rem 2rem 4rem;
+  }
 }

@@ -15,7 +15,6 @@
  */
 
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
 
 type ToolShellProps = {
   title: string;
@@ -25,10 +24,7 @@ type ToolShellProps = {
 
 export function ToolShell({ title, error, children }: ToolShellProps) {
   return (
-    <main className="app">
-      <Link className="back-link" to="/">
-        ← All tools
-      </Link>
+    <main className="content">
       <h1 className="tool-title">{title}</h1>
       {error ? <p className="error">{error}</p> : null}
       {children}

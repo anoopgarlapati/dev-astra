@@ -16,6 +16,7 @@
 
 import { jsonTool, type JsonInput } from "@dev-astra/core";
 import { useState } from "react";
+import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
 export function JsonTool() {
@@ -53,7 +54,10 @@ export function JsonTool() {
           </select>
         </div>
         <div className="field">
-          <label htmlFor="json-input">Input</label>
+          <div className="field-label-row">
+            <label htmlFor="json-input">Input</label>
+            <CopyButton value={text} />
+          </div>
           <textarea
             id="json-input"
             rows={10}
@@ -67,7 +71,10 @@ export function JsonTool() {
         {error ? <p className="error">{error}</p> : null}
         {hasResult ? (
           <div className="field">
-            <label htmlFor="json-output">Output</label>
+            <div className="field-label-row">
+              <label htmlFor="json-output">Output</label>
+              <CopyButton value={output} />
+            </div>
             <pre id="json-output" className="output">
               {output}
             </pre>
