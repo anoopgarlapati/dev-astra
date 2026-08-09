@@ -1,0 +1,12 @@
+{
+  "name": "dev-astra",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "bun run --filter @dev-astra/web dev",
+    "build": "bun run --filter @dev-astra/web build",
+    "test": "bun run --filter @dev-astra/core test",
+    "preview": "bun run --filter @dev-astra/web preview"
+  }
+}
