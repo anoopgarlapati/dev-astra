@@ -65,7 +65,7 @@ export function YamlTool() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button type="button" onClick={run}>
+        <button type="button" className="button-primary" onClick={run}>
           Convert
         </button>
         {error ? <p className="error">{error}</p> : null}

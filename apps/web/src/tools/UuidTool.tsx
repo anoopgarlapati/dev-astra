@@ -74,7 +74,7 @@ export function UuidTool() {
             />
           </div>
         ) : null}
-        <button type="button" onClick={run}>
+        <button type="button" className="button-primary" onClick={run}>
           {mode === "generate" ? "Generate" : "Validate"}
         </button>
         {error ? <p className="error">{error}</p> : null}

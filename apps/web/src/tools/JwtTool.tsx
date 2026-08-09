@@ -56,7 +56,7 @@ export function JwtTool() {
             onChange={(e) => setToken(e.target.value)}
           />
         </div>
-        <button type="button" onClick={run}>
+        <button type="button" className="button-primary" onClick={run}>
           Decode
         </button>
         {error ? <p className="error">{error}</p> : null}
