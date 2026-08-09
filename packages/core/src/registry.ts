@@ -15,11 +15,22 @@
  */
 
 import type { Tool } from "./types";
+import { base64Tool } from "./tools/base64";
+import { jsonTool } from "./tools/json";
+import { jwtTool } from "./tools/jwt";
+import { uuidTool } from "./tools/uuid";
+import { yamlTool } from "./tools/yaml";
 
-const tools: Tool[] = [];
+const tools: Tool[] = [
+  base64Tool,
+  jwtTool,
+  jsonTool,
+  yamlTool,
+  uuidTool,
+];
 
 export function listTools(): Tool[] {
-  return tools;
+  return [...tools];
 }
 
 export function getTool(id: string): Tool | undefined {

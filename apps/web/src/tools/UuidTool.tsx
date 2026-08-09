@@ -1,0 +1,86 @@
+/*
+ * Copyright Anoop Garlapati
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { uuidTool, type UuidInput } from "@dev-astra/core";
+import { useState } from "react";
+import { ToolShell } from "../components/ToolShell";
+
+export function UuidTool() {
+  const [mode, setMode] = useState<UuidInput["mode"]>("generate");
+  const [value, setValue] = useState("");
+  const [output, setOutput] = useState("");
+  const [error, setError] = useState<string | undefined>();
+
+  function run() {
+    const result = uuidTool.run(
+      mode === "generate" ? { mode } : { mode, value },
+    );
+    if (result.ok) {
+      if (mode === "generate") {
+        setOutput(result.data.value);
+      } else {
+        setOutput(
+          result.data.valid ? `${result.data.value} is valid` : `${result.data.value} is invalid`,
+        );
+      }
+      setError(undefined);
+    } else {
+      setOutput("");
+      setError(result.error.message);
+    }
+  }
+
+  return (
+    <ToolShell title="UUID">
+      <div className="tool-layout">
+        <div className="field">
+          <label htmlFor="uuid-mode">Mode</label>
+          <select
+            id="uuid-mode"
+            value={mode}
+            onChange={(e) => setMode(e.target.value as UuidInput["mode"])}
+          >
+            <option value="generate">Generate</option>
+            <option value="validate">Validate</option>
+          </select>
+        </div>
+        {mode === "validate" ? (
+          <div className="field">
+            <label htmlFor="uuid-value">UUID</label>
+            <input
+              id="uuid-value"
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          </div>
+        ) : null}
+        <button type="button" onClick={run}>
+          {mode === "generate" ? "Generate" : "Validate"}
+        </button>
+        {error ? <p className="error">{error}</p> : null}
+        {output ? (
+          <div className="field">
+            <label htmlFor="uuid-output">Result</label>
+            <pre id="uuid-output" className="output">
+              {output}
+            </pre>
+          </div>
+        ) : null}
+      </div>
+    </ToolShell>
+  );
+}

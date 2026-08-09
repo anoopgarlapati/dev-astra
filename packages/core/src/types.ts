@@ -30,5 +30,5 @@ export interface Tool<TInput = unknown, TOutput = unknown> {
   name: string;
   description: string;
   category: ToolCategory;
-  run: (input: TInput) => ToolResult<TOutput>;
+  run(input: TInput): ToolResult<TOutput>;
 }

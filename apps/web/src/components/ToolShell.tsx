@@ -14,15 +14,24 @@
  * limitations under the License.
  */
 
-import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
-import { ToolPage } from "./pages/ToolPage";
+import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
-export function App() {
+type ToolShellProps = {
+  title: string;
+  error?: string;
+  children?: ReactNode;
+};
+
+export function ToolShell({ title, error, children }: ToolShellProps) {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/tools/:id" element={<ToolPage />} />
-    </Routes>
+    <main className="app">
+      <Link className="back-link" to="/">
+        ← All tools
+      </Link>
+      <h1 className="tool-title">{title}</h1>
+      {error ? <p className="error">{error}</p> : null}
+      {children}
+    </main>
   );
 }

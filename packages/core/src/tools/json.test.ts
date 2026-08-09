@@ -15,28 +15,22 @@
  */
 
 import { describe, expect, test } from "bun:test";
-import { getTool, listTools } from "./registry";
+import { jsonTool } from "./json";
 
-describe("registry", () => {
-  test("listTools returns five starter tools", () => {
-    const tools = listTools();
-    expect(tools.map((t) => t.id).sort()).toEqual([
-      "base64",
-      "json",
-      "jwt",
-      "uuid",
-      "yaml",
-    ]);
+describe("jsonTool", () => {
+  test("formats JSON", () => {
+    const result = jsonTool.run({ mode: "format", text: '{"a":1}' });
+    expect(result).toEqual({ ok: true, data: { text: '{\n  "a": 1\n}' } });
   });
 
-  test("listTools returns a shallow copy", () => {
-    const a = listTools();
-    a.pop();
-    expect(listTools()).toHaveLength(5);
+  test("minifies JSON", () => {
+    const result = jsonTool.run({ mode: "minify", text: '{\n  "a": 1\n}' });
+    expect(result).toEqual({ ok: true, data: { text: '{"a":1}' } });
   });
 
-  test("getTool returns tools by id", () => {
-    expect(getTool("base64")?.name).toBe("Base64");
-    expect(getTool("missing")).toBeUndefined();
+  test("rejects invalid JSON", () => {
+    const result = jsonTool.run({ mode: "format", text: "{" });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("INVALID_JSON");
   });
 });

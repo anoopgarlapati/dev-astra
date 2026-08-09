@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
-import { ToolPage } from "./pages/ToolPage";
+import type { ToolResult } from "./types";
 
-export function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/tools/:id" element={<ToolPage />} />
-    </Routes>
-  );
+export function ok<T>(data: T): ToolResult<T> {
+  return { ok: true, data };
+}
+
+export function err(message: string, code?: string): ToolResult<never> {
+  return { ok: false, error: code ? { message, code } : { message } };
 }
