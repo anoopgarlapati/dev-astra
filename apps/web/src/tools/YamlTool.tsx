@@ -16,6 +16,7 @@
 
 import { yamlTool, type YamlInput } from "@dev-astra/core";
 import { useState } from "react";
+import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
 export function YamlTool() {
@@ -53,7 +54,10 @@ export function YamlTool() {
           </select>
         </div>
         <div className="field">
-          <label htmlFor="yaml-input">Input</label>
+          <div className="field-label-row">
+            <label htmlFor="yaml-input">Input</label>
+            <CopyButton value={text} />
+          </div>
           <textarea
             id="yaml-input"
             rows={10}
@@ -61,13 +65,16 @@ export function YamlTool() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button type="button" onClick={run}>
+        <button type="button" className="button-primary" onClick={run}>
           Convert
         </button>
         {error ? <p className="error">{error}</p> : null}
         {hasResult ? (
           <div className="field">
-            <label htmlFor="yaml-output">Output</label>
+            <div className="field-label-row">
+              <label htmlFor="yaml-output">Output</label>
+              <CopyButton value={output} />
+            </div>
             <pre id="yaml-output" className="output">
               {output}
             </pre>

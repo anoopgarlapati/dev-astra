@@ -14,33 +14,17 @@
  * limitations under the License.
  */
 
-import { listTools } from "@dev-astra/core";
-import { Link } from "react-router-dom";
-
 export function HomePage() {
-  const tools = listTools();
-
   return (
-    <main className="app">
+    <main className="content">
       <h1 className="brand">Dev Astra</h1>
       <p className="tagline">
-        Self-hosted developer toolkit. Transformations run in your browser.
+        Self-hosted developer toolkit. Transformations run in your browser — nothing
+        is sent to a server.
       </p>
-
-      {tools.length === 0 ? (
-        <p className="empty">No tools registered.</p>
-      ) : (
-        <ul className="tool-list">
-          {tools.map((tool) => (
-            <li key={tool.id}>
-              <Link className="tool-link" to={`/tools/${tool.id}`}>
-                <div className="tool-name">{tool.name}</div>
-                <p className="tool-desc">{tool.description}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <p className="lede">
+        Pick a tool from the sidebar to encode, decode, format, or generate values.
+      </p>
     </main>
   );
 }

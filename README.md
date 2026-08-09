@@ -2,7 +2,7 @@
 
 Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is a static React app under `apps/web`.
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 
 ## Tools
 
@@ -43,6 +43,10 @@ bun run build
 
 Output: `apps/web/dist/`
 
+## CI
+
+GitHub Actions runs `bun run test` and `bun run build` on pull requests and pushes to `main`.
+
 ## Self-host
 
 ```bash
@@ -57,3 +61,4 @@ Use `-s` (single-page application mode) so direct URLs such as `/tools/jwt` serv
 
 - `packages/core` — pure TypeScript tools + registry (no UI)
 - `apps/web` — React + Vite static frontend
+- `AGENTS.md` — short orientation for coding agents

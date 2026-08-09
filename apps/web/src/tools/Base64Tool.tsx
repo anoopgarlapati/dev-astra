@@ -16,6 +16,7 @@
 
 import { base64Tool, type Base64Input } from "@dev-astra/core";
 import { useState } from "react";
+import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
 export function Base64Tool() {
@@ -53,7 +54,10 @@ export function Base64Tool() {
           </select>
         </div>
         <div className="field">
-          <label htmlFor="base64-input">Input</label>
+          <div className="field-label-row">
+            <label htmlFor="base64-input">Input</label>
+            <CopyButton value={text} />
+          </div>
           <textarea
             id="base64-input"
             rows={8}
@@ -61,13 +65,16 @@ export function Base64Tool() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <button type="button" onClick={run}>
+        <button type="button" className="button-primary" onClick={run}>
           Run
         </button>
         {error ? <p className="error">{error}</p> : null}
         {hasResult ? (
           <div className="field">
-            <label htmlFor="base64-output">Output</label>
+            <div className="field-label-row">
+              <label htmlFor="base64-output">Output</label>
+              <CopyButton value={output} />
+            </div>
             <pre id="base64-output" className="output">
               {output}
             </pre>

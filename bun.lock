@@ -7,7 +7,7 @@
     },
     "apps/web": {
       "name": "@dev-astra/web",
-      "version": "0.0.1",
+      "version": "0.2.0",
       "dependencies": {
         "@dev-astra/core": "workspace:*",
         "react": "^19.1.0",
@@ -24,7 +24,7 @@
     },
     "packages/core": {
       "name": "@dev-astra/core",
-      "version": "0.0.1",
+      "version": "0.2.0",
       "dependencies": {
         "js-yaml": "^5.2.3",
       },
