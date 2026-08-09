@@ -80,6 +80,16 @@ body {
   color: var(--muted);
 }
 
+.tool-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tool-link:hover .tool-name {
+  color: var(--accent);
+}
+
 .tool-name {
   font-weight: 600;
 }
@@ -88,4 +98,120 @@ body {
   margin: 0.25rem 0 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.tool-title {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.03em;
+}
+
+.tool-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.field textarea,
+.field input,
+.field select,
+.output,
+.panel pre {
+  width: 100%;
+  font: inherit;
+  font-family: "IBM Plex Mono", "Menlo", monospace;
+  font-size: 0.9rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #d5e0da;
+  background: var(--panel);
+  color: var(--ink);
+  resize: vertical;
+}
+
+.field select {
+  font-family: inherit;
+  max-width: 16rem;
+}
+
+.tool-layout button {
+  justify-self: start;
+  padding: 0.55rem 1.1rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tool-layout button:hover {
+  filter: brightness(1.05);
+}
+
+.error {
+  margin: 0;
+  color: #a11f2c;
+  font-size: 0.95rem;
+}
+
+.output {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.panels {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+  .panels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #d5e0da;
+  padding: 0.75rem 0.85rem;
+}
+
+.panel h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.panel pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  white-space: pre-wrap;
+  word-break: break-word;
 }

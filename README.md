@@ -2,7 +2,17 @@
 
 Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is a static React app under `apps/web`.
 
-**Version:** 0.0.1 (scaffold). Starter tools ship in 0.1.0.
+**Version:** 0.1.0
+
+## Tools
+
+- **Base64** — encode or decode Base64 text
+- **JWT** — decode header and payload (no verification)
+- **JSON** — format or minify JSON
+- **YAML** — convert between YAML and JSON
+- **UUID** — generate a UUID v4 or validate a UUID string
+
+Open a tool at `/tools/:id` (for example `/tools/base64`).
 
 ## Requirements
 
@@ -11,6 +21,8 @@ Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is 
 ## Develop
 
 ```bash
+git clone https://github.com/anoopgarlapati/dev-astra.git
+cd dev-astra
 bun install
 bun run dev
 ```
@@ -36,10 +48,10 @@ Output: `apps/web/dist/`
 ```bash
 bun install
 bun run build
-bunx serve apps/web/dist
+bunx serve -s apps/web/dist
 ```
 
-Serve `apps/web/dist` with any static file server.
+Use `-s` (single-page application mode) so direct URLs such as `/tools/jwt` serve `index.html` and client routing works. You can serve `apps/web/dist` with any static host that supports SPA fallback.
 
 ## Workspace layout
 

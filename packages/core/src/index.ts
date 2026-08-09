@@ -15,4 +15,10 @@
  */
 
 export type { Tool, ToolCategory, ToolError, ToolResult } from "./types";
+export { ok, err } from "./result";
 export { getTool, listTools } from "./registry";
+export { base64Tool, type Base64Input } from "./tools/base64";
+export { jwtTool, type JwtInput } from "./tools/jwt";
+export { jsonTool, type JsonInput } from "./tools/json";
+export { yamlTool, type YamlInput } from "./tools/yaml";
+export { uuidTool, type UuidInput } from "./tools/uuid";
