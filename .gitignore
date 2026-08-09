@@ -1,0 +1,39 @@
+# Superpowers local docs (plans + specs — not committed)
+docs/superpowers/
+
+# Local agent scratch / worktrees
+.superpowers/
+.worktrees/
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Logs / debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Bun
+.bun/
