@@ -133,7 +133,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <div className="theme-toggle" ref={rootRef} data-open={open || undefined}>
+    <div className="theme-toggle" ref={rootRef} data-open={open ? "true" : undefined}>
       <button
         type="button"
         className="theme-toggle__trigger"
