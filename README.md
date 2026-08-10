@@ -2,7 +2,7 @@
 
 Self-hosted developer toolkit. Tool logic lives in `@dev-astra/core`; the UI is a static React app under `apps/web`.
 
-**Version:** 0.2.2
+**Version:** 0.2.3
 
 ## Tools
 
