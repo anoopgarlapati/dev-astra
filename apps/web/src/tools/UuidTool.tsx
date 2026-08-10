@@ -17,6 +17,7 @@
 import { uuidTool, type UuidInput } from "@dev-astra/core";
 import { useState } from "react";
 import { CopyButton } from "../components/CopyButton";
+import { SelectControl } from "../components/SelectControl";
 import { ToolShell } from "../components/ToolShell";
 
 export function UuidTool() {
@@ -51,14 +52,15 @@ export function UuidTool() {
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="uuid-mode">Mode</label>
-          <select
+          <SelectControl
             id="uuid-mode"
             value={mode}
-            onChange={(e) => setMode(e.target.value as UuidInput["mode"])}
-          >
-            <option value="generate">Generate UUID v4</option>
-            <option value="validate">Validate UUID v4</option>
-          </select>
+            options={[
+              { value: "generate", label: "Generate UUID v4" },
+              { value: "validate", label: "Validate UUID v4" },
+            ]}
+            onChange={(next) => setMode(next as UuidInput["mode"])}
+          />
         </div>
         {mode === "validate" ? (
           <div className="field">

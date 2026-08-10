@@ -17,6 +17,7 @@
 import { base64Tool, type Base64Input } from "@dev-astra/core";
 import { useState } from "react";
 import { CopyButton } from "../components/CopyButton";
+import { SelectControl } from "../components/SelectControl";
 import { ToolShell } from "../components/ToolShell";
 
 export function Base64Tool() {
@@ -44,14 +45,15 @@ export function Base64Tool() {
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="base64-mode">Mode</label>
-          <select
+          <SelectControl
             id="base64-mode"
             value={mode}
-            onChange={(e) => setMode(e.target.value as Base64Input["mode"])}
-          >
-            <option value="encode">Encode</option>
-            <option value="decode">Decode</option>
-          </select>
+            options={[
+              { value: "encode", label: "Encode" },
+              { value: "decode", label: "Decode" },
+            ]}
+            onChange={(next) => setMode(next as Base64Input["mode"])}
+          />
         </div>
         <div className="field">
           <div className="field-label-row">
