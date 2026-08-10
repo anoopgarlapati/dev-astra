@@ -539,7 +539,6 @@ select {
 
 .field textarea,
 .field input,
-.field select,
 .output,
 .panel pre {
   width: 100%;
@@ -555,17 +554,115 @@ select {
 }
 
 .field textarea:focus,
-.field input:focus,
-.field select:focus {
+.field input:focus {
   outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
   outline-offset: 1px;
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }
 
-.field select {
-  font-family: inherit;
+.select-control {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
   max-width: 16rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.select-control:focus-within {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 1px;
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.select-control__trigger {
+  width: 100%;
+  margin: 0;
+  padding: 0.35rem 2.25rem 0.35rem 0.75rem;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
   cursor: pointer;
+}
+
+.select-control__trigger:focus {
+  outline: none;
+}
+
+.select-control__affix {
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  pointer-events: none;
+  color: var(--muted);
+}
+
+.select-control__divider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.select-control__chevron {
+  margin-left: auto;
+  margin-right: 0.55rem;
+  transition: transform 0.12s ease;
+}
+
+.select-control[data-open="true"] .select-control__chevron {
+  transform: rotate(180deg);
+}
+
+.select-control__menu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.select-control__option {
+  padding: 0.4rem 0.55rem;
+  border-radius: calc(var(--radius-sm) - 0.1rem);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.select-control__option[data-active="true"] {
+  background: var(--hover);
+}
+
+.select-control__option[data-selected="true"] {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.select-control__option[data-selected="true"][data-active="true"] {
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--hover));
 }
 
 .button-primary {

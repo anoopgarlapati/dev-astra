@@ -17,6 +17,7 @@
 import { jsonTool, type JsonInput } from "@dev-astra/core";
 import { useState } from "react";
 import { CopyButton } from "../components/CopyButton";
+import { SelectControl } from "../components/SelectControl";
 import { ToolShell } from "../components/ToolShell";
 
 export function JsonTool() {
@@ -44,14 +45,15 @@ export function JsonTool() {
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="json-mode">Mode</label>
-          <select
+          <SelectControl
             id="json-mode"
             value={mode}
-            onChange={(e) => setMode(e.target.value as JsonInput["mode"])}
-          >
-            <option value="format">Format</option>
-            <option value="minify">Minify</option>
-          </select>
+            options={[
+              { value: "format", label: "Format" },
+              { value: "minify", label: "Minify" },
+            ]}
+            onChange={(next) => setMode(next as JsonInput["mode"])}
+          />
         </div>
         <div className="field">
           <div className="field-label-row">

@@ -17,6 +17,7 @@
 import { yamlTool, type YamlInput } from "@dev-astra/core";
 import { useState } from "react";
 import { CopyButton } from "../components/CopyButton";
+import { SelectControl } from "../components/SelectControl";
 import { ToolShell } from "../components/ToolShell";
 
 export function YamlTool() {
@@ -44,14 +45,15 @@ export function YamlTool() {
       <div className="tool-layout">
         <div className="field">
           <label htmlFor="yaml-mode">Mode</label>
-          <select
+          <SelectControl
             id="yaml-mode"
             value={mode}
-            onChange={(e) => setMode(e.target.value as YamlInput["mode"])}
-          >
-            <option value="yaml-to-json">YAML → JSON</option>
-            <option value="json-to-yaml">JSON → YAML</option>
-          </select>
+            options={[
+              { value: "yaml-to-json", label: "YAML → JSON" },
+              { value: "json-to-yaml", label: "JSON → YAML" },
+            ]}
+            onChange={(next) => setMode(next as YamlInput["mode"])}
+          />
         </div>
         <div className="field">
           <div className="field-label-row">
