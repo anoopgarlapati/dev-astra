@@ -17,6 +17,7 @@
 import { listTools } from "@dev-astra/core";
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function AppShell() {
   const tools = listTools();
@@ -28,7 +29,7 @@ export function AppShell() {
 
   return (
     <div className={`shell${navOpen ? " shell--nav-open" : ""}`}>
-      <header className="mobile-bar">
+      <header className="top-bar">
         <button
           type="button"
           className="menu-button"
@@ -38,9 +39,12 @@ export function AppShell() {
         >
           Menu
         </button>
-        <Link className="mobile-brand" to="/" onClick={closeNav}>
+        <Link className="top-bar-brand" to="/" onClick={closeNav}>
           Dev Astra
         </Link>
+        <div className="top-bar-actions">
+          <ThemeToggle />
+        </div>
       </header>
 
       {navOpen ? (
@@ -53,9 +57,6 @@ export function AppShell() {
       ) : null}
 
       <aside id="app-sidebar" className="sidebar">
-        <Link className="sidebar-brand" to="/" onClick={closeNav}>
-          Dev Astra
-        </Link>
         <nav className="sidebar-nav" aria-label="Tools">
           <p className="sidebar-label">Tools</p>
           <ul>
