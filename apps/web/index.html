@@ -4,6 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dev Astra</title>
+    <script>
+      (function () {
+        var key = "dev-astra-theme";
+        var preference = "system";
+        try {
+          var raw = localStorage.getItem(key);
+          if (raw === "system" || raw === "light" || raw === "dark") {
+            preference = raw;
+          }
+        } catch (e) {}
+        var resolved = preference;
+        if (preference === "system") {
+          resolved =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        }
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.style.colorScheme = resolved;
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
