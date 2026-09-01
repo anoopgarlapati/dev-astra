@@ -25,10 +25,14 @@ export type ToolResult<T> =
   | { ok: true; data: T }
   | { ok: false; error: ToolError };
 
+export type CodeLanguage = "json" | "yaml" | "jwt" | "plain";
+
 export type ToolDocExample = {
   title: string;
   input: string;
   output?: string;
+  inputLanguage?: CodeLanguage;
+  outputLanguage?: CodeLanguage;
 };
 
 export type ToolDocs = {

@@ -48,6 +48,7 @@ export const jwtTool: Tool<JwtInput, JwtOutput> = {
           "eyJhbGciOiJub25lIn0.eyJzdWIiOiIxMjM0IiwibmFtZSI6IkRldiBBc3RyYSJ9.",
         output:
           'header: { "alg": "none" }\npayload: { "sub": "1234", "name": "Dev Astra" }',
+        inputLanguage: "jwt",
       },
     ],
   },

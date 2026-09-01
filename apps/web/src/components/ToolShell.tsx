@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-import type { ToolDocs } from "@dev-astra/core";
+import type { CodeLanguage, ToolDocs } from "@dev-astra/core";
 import { useState, type ReactNode } from "react";
+import { CodeField } from "./CodeField";
 
 type ToolShellProps = {
   title: string;
@@ -23,6 +24,29 @@ type ToolShellProps = {
   error?: string;
   children?: ReactNode;
 };
+
+function DocsCode({
+  id,
+  value,
+  language,
+}: {
+  id: string;
+  value: string;
+  language?: CodeLanguage;
+}) {
+  if (language && language !== "plain") {
+    return (
+      <CodeField
+        id={id}
+        language={language}
+        value={value}
+        variant="docs"
+        readOnly
+      />
+    );
+  }
+  return <pre>{value}</pre>;
+}
 
 export function ToolShell({ title, docs, error, children }: ToolShellProps) {
   const [docsOpen, setDocsOpen] = useState(false);
@@ -95,11 +119,19 @@ export function ToolShell({ title, docs, error, children }: ToolShellProps) {
               <div key={example.title} className="tool-docs-example">
                 <h3>{example.title}</h3>
                 <p className="tool-docs-label">Input</p>
-                <pre>{example.input}</pre>
+                <DocsCode
+                  id={`docs-${example.title}-input`}
+                  language={example.inputLanguage}
+                  value={example.input}
+                />
                 {example.output != null ? (
                   <>
                     <p className="tool-docs-label">Output</p>
-                    <pre>{example.output}</pre>
+                    <DocsCode
+                      id={`docs-${example.title}-output`}
+                      language={example.outputLanguage}
+                      value={example.output}
+                    />
                   </>
                 ) : null}
               </div>

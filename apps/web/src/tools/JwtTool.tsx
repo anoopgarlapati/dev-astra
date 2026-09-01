@@ -16,6 +16,7 @@
 
 import { jwtTool } from "@dev-astra/core";
 import { useState } from "react";
+import { CodeField } from "../components/CodeField";
 import { CopyButton } from "../components/CopyButton";
 import { ToolShell } from "../components/ToolShell";
 
@@ -49,11 +50,12 @@ export function JwtTool() {
             <label htmlFor="jwt-token">Token</label>
             <CopyButton value={token} />
           </div>
-          <textarea
+          <CodeField
             id="jwt-token"
-            rows={5}
+            language="jwt"
             value={token}
-            onChange={(e) => setToken(e.target.value)}
+            minHeight="7.5rem"
+            onChange={setToken}
           />
         </div>
         <button type="button" className="button-primary" onClick={run}>
@@ -67,14 +69,26 @@ export function JwtTool() {
                 <h2>Header</h2>
                 <CopyButton value={header} />
               </div>
-              <pre>{header}</pre>
+              <CodeField
+                id="jwt-header"
+                language="json"
+                value={header}
+                variant="panel"
+                readOnly
+              />
             </div>
             <div className="panel">
               <div className="panel-label-row">
                 <h2>Payload</h2>
                 <CopyButton value={payload} />
               </div>
-              <pre>{payload}</pre>
+              <CodeField
+                id="jwt-payload"
+                language="json"
+                value={payload}
+                variant="panel"
+                readOnly
+              />
             </div>
             <div className="panel">
               <div className="panel-label-row">
