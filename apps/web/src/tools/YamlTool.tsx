@@ -16,6 +16,7 @@
 
 import { yamlTool, type YamlInput } from "@dev-astra/core";
 import { useState } from "react";
+import { CodeField } from "../components/CodeField";
 import { CopyButton } from "../components/CopyButton";
 import { SelectControl } from "../components/SelectControl";
 import { ToolShell } from "../components/ToolShell";
@@ -60,11 +61,12 @@ export function YamlTool() {
             <label htmlFor="yaml-input">Input</label>
             <CopyButton value={text} />
           </div>
-          <textarea
+          <CodeField
             id="yaml-input"
-            rows={10}
+            language={mode === "yaml-to-json" ? "yaml" : "json"}
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            minHeight="15rem"
+            onChange={setText}
           />
         </div>
         <button type="button" className="button-primary" onClick={run}>
@@ -77,9 +79,12 @@ export function YamlTool() {
               <label htmlFor="yaml-output">Output</label>
               <CopyButton value={output} />
             </div>
-            <pre id="yaml-output" className="output">
-              {output}
-            </pre>
+            <CodeField
+              id="yaml-output"
+              language={mode === "yaml-to-json" ? "json" : "yaml"}
+              value={output}
+              readOnly
+            />
           </div>
         ) : null}
       </div>

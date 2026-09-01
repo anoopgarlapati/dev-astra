@@ -56,4 +56,10 @@ describe("jwtTool", () => {
       expect(result.error.code).toBe("INVALID_JWT");
     }
   });
+
+  test("docs example token is marked as jwt", () => {
+    const example = jwtTool.docs.examples?.[0];
+    expect(example?.inputLanguage).toBe("jwt");
+    expect(example?.outputLanguage).toBeUndefined();
+  });
 });

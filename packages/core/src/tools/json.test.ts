@@ -33,4 +33,11 @@ describe("jsonTool", () => {
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("INVALID_JSON");
   });
+
+  test("docs examples are marked as JSON", () => {
+    for (const example of jsonTool.docs.examples ?? []) {
+      expect(example.inputLanguage).toBe("json");
+      expect(example.outputLanguage).toBe("json");
+    }
+  });
 });

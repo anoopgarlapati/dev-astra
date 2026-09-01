@@ -15,6 +15,7 @@
  */
 
 export type {
+  CodeLanguage,
   Tool,
   ToolCategory,
   ToolDocExample,

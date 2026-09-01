@@ -45,4 +45,18 @@ describe("yamlTool", () => {
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("INVALID_YAML");
   });
+
+  test("docs examples declare input and output languages", () => {
+    const examples = yamlTool.docs.examples ?? [];
+    expect(examples[0]).toMatchObject({
+      title: "YAML → JSON",
+      inputLanguage: "yaml",
+      outputLanguage: "json",
+    });
+    expect(examples[1]).toMatchObject({
+      title: "JSON → YAML",
+      inputLanguage: "json",
+      outputLanguage: "yaml",
+    });
+  });
 });
